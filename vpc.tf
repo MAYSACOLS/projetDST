@@ -1,7 +1,7 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "projetweb1-vpc"
+  name = "PW1-vpc"
   cidr = "10.0.0.0/16"
 
   azs = data.aws_availability_zones.available.names
@@ -31,5 +31,14 @@ module "vpc" {
     "Name" = "database-subnet"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "Role" = "database"
+  }
+}
+#Configuration du Groupe de Sous-réseaux RDS
+resource "aws_db_subnet_group" "mariadb_subnet_group" {
+  name       = "mariadb-subnet-group"
+  subnet_ids = var.database_subnets
+
+  tags = {
+    Name = "mariadb-subnet-group"
   }
 }

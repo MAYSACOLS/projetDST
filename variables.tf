@@ -13,23 +13,25 @@ variable "vpc_cidr" {
 variable "public_subnets" {
   description = "List of public subnet CIDR blocks"
   type        = list(string)
-  default     = ["10.0.128.0/20", "10.0.144.0/20"]
+  default     = ["10.0.0.0/24", "10.0.1.0/24"]
 }
 
 variable "private_subnets" {
   description = "List of private subnet CIDR blocks"
   type        = list(string)
-  default     = ["10.0.0.0/19", "10.0.32.0/19"]
+  default     =  ["10.0.2.0/24", "10.0.3.0/24"]
 }
+
 variable "database_subnets" {
   description = "List of database subnets"
   type        = list(string)
-  default     = ["10.0.64.0/19", "10.0.96.0/19"]  # Utilisez des CIDR uniques ici
+  default     = ["10.0.4.0/24", "10.0.5.0/24"]
 }
+
 variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string
-  default     = "wordpress-eks-cluster"
+  default     = "Maysa-eks-cluster"
 }
 
 variable "node_instance_type" {
@@ -37,7 +39,7 @@ variable "node_instance_type" {
   type        = string
   default     = "t3.medium"
 }
-
+#variables pour l'autoscaling group
 variable "desired_capacity" {
   description = "Desired number of worker nodes for the EKS cluster"
   type        = number
@@ -94,10 +96,7 @@ variable "secret_key" {
   description = "AWS Secret Key"
   default     = ""
 }
-variable "AWS_userName" {
-  description = "AWS userName"
-  default     = " "
-}
+
 variable "key_name" {
   default = "maysa_keypair"
   type    = string

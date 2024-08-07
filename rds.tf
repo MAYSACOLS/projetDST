@@ -1,12 +1,12 @@
 resource "aws_db_subnet_group" "mariadb_subnet_group" {
   name       = "mariadb-subnet-group"
-  subnet_ids = module.vpc.database_subnets
+  subnet_ids = var.database_subnets
 
   tags = {
     Name = "mariadb-subnet-group"
   }
 }
-#create a RDS Database Instance
+#Configuration de l'Instance RDS
 resource "aws_db_instance" "mariadb" {
   identifier           = "mariadb-instance"  # Nom de l'instance
   engine               = "mariadb"

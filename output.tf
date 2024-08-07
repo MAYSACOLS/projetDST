@@ -12,7 +12,10 @@ output "private_subnets" {
   description = "The private subnets of the VPC"
   value       = module.vpc.private_subnets
 }
-
+output "database_subnets" {
+  description = "The database subnets of the VPC"
+  value       = module.vpc.database_subnets
+}
 output "eks_cluster_id" {
   description = "The ID of the EKS cluster"
   value       = module.eks.cluster_id
@@ -32,10 +35,7 @@ output "eks_node_security_group_id" {
   description = "The security group ID of the EKS nodes"
   value       = aws_security_group.eks_node.id
 }
-output "wordpress_url" {
-  description = "The URL of the WordPress application"
-  value       = aws_lb.wordpress.dns_name
-}
+
 output "cluster_endpoint" {
   description = "Endpoint for EKS control plane."
   value       = module.eks.cluster_endpoint

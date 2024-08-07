@@ -1,7 +1,7 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 18.0"
-
+  version = "~> 19.0"
+  
   cluster_name    = var.cluster_name
   create_iam_role = true
 
@@ -19,6 +19,9 @@ module "eks" {
 
       instance_type = "t3.medium"
       key_name      = var.key_name # Replace with your key pair name
+       tags = {
+        Name = "PW_eks_node_group"
+      }
     }
   }
   node_security_group_additional_rules = {
@@ -52,7 +55,7 @@ module "fargate_profile" {
 
   selectors = [
     {
-      namespace = "projetweb"
+      namespace = "staging"
     }
   ]
 }

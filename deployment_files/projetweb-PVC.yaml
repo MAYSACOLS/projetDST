@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: projetweb-pvc
-  namespace: projetweb
+  namespace: staging
 spec:
   accessModes:
     - ReadWriteOnce
